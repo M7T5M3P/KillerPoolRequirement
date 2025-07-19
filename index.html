@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>KillerPool - Application de Billard</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+          sans-serif;
+        line-height: 1.6;
+        color: #333;
+        background: linear-gradient(135deg, #0f4c3a, #1a6b4f);
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      header {
+        background: rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(10px);
+        padding: 1rem 0;
+        position: fixed;
+        width: 100%;
+        top: 0;
+        z-index: 1000;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo {
+        font-size: 1.8rem;
+        font-weight: bold;
+        color: #fff;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 2rem;
+        list-style: none;
+      }
+
+      .nav-links a {
+        color: #fff;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        padding: 0.5rem 1rem;
+        border-radius: 25px;
+      }
+
+      .nav-links a:hover {
+        background: rgba(255, 255, 255, 0.2);
+        transform: translateY(-2px);
+      }
+
+      main {
+        margin-top: 80px;
+      }
+
+      .hero {
+        text-align: center;
+        padding: 100px 0;
+        color: #fff;
+      }
+
+      .hero h1 {
+        font-size: 3.5rem;
+        margin-bottom: 1rem;
+        text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        animation: fadeInUp 1s ease;
+      }
+
+      .hero p {
+        font-size: 1.3rem;
+        margin-bottom: 2rem;
+        opacity: 0.9;
+        animation: fadeInUp 1s ease 0.2s both;
+      }
+
+      .download-buttons {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        flex-wrap: wrap;
+        animation: fadeInUp 1s ease 0.4s both;
+      }
+
+      .download-btn {
+        background: rgba(255, 255, 255, 0.2);
+        color: #fff;
+        padding: 15px 30px;
+        border: 2px solid rgba(255, 255, 255, 0.3);
+        border-radius: 50px;
+        text-decoration: none;
+        font-weight: bold;
+        transition: all 0.3s ease;
+        backdrop-filter: blur(10px);
+      }
+
+      .download-btn:hover {
+        background: rgba(255, 255, 255, 0.3);
+        transform: translateY(-3px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+      }
+
+      .section {
+        padding: 80px 0;
+        background: #fff;
+      }
+
+      .section:nth-child(even) {
+        background: #f8f9fa;
+      }
+
+      .section-title {
+        text-align: center;
+        font-size: 2.5rem;
+        margin-bottom: 3rem;
+        color: #2c3e50;
+      }
+
+      .features-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        margin-top: 2rem;
+      }
+
+      .feature-card {
+        background: #fff;
+        padding: 2rem;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        transition: transform 0.3s ease;
+      }
+
+      .feature-card:hover {
+        transform: translateY(-10px);
+      }
+
+      .feature-icon {
+        width: 80px;
+        height: 80px;
+        background: linear-gradient(135deg, #0f4c3a, #1a6b4f);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 1rem;
+        font-size: 2rem;
+        color: #fff;
+      }
+
+      .screenshots {
+        display: flex;
+        gap: 2rem;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+
+      .screenshot {
+        width: 250px;
+        height: 450px;
+        background: linear-gradient(145deg, #e6e6e6, #ffffff);
+        border-radius: 25px;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.1rem;
+        color: #666;
+        transition: transform 0.3s ease;
+      }
+
+      .screenshot:hover {
+        transform: scale(1.05);
+      }
+
+      footer {
+        background: #2c3e50;
+        color: #fff;
+        padding: 60px 0 30px;
+      }
+
+      .footer-content {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+        margin-bottom: 2rem;
+      }
+
+      .footer-section h3 {
+        margin-bottom: 1rem;
+        color: #3498db;
+      }
+
+      .footer-section a {
+        color: #ecf0f1;
+        text-decoration: none;
+        display: block;
+        margin-bottom: 0.5rem;
+        transition: color 0.3s ease;
+      }
+
+      .footer-section a:hover {
+        color: #3498db;
+      }
+
+      .footer-bottom {
+        text-align: center;
+        padding-top: 2rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        color: #bdc3c7;
+      }
+
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @media (max-width: 768px) {
+        .hero h1 {
+          font-size: 2.5rem;
+        }
+
+        .nav-links {
+          display: none;
+        }
+
+        .download-buttons {
+          flex-direction: column;
+          align-items: center;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <nav class="container">
+        <div class="logo">KillerPool</div>
+        <ul class="nav-links">
+          <li><a href="#home">Accueil</a></li>
+          <li><a href="#features">Fonctionnalités</a></li>
+          <li><a href="#screenshots">Captures</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <section id="home" class="hero">
+        <div class="container">
+          <h1>KillerPool</h1>
+          <p>Le tableau de score ultime pour vos parties de billard</p>
+          <div class="download-buttons">
+            <a href="#" class="download-btn">Télécharger sur App Store</a>
+            <a href="#" class="download-btn">Télécharger sur Google Play</a>
+          </div>
+        </div>
+      </section>
+
+      <section id="features" class="section">
+        <div class="container">
+          <h2 class="section-title">Fonctionnalités</h2>
+          <div class="features-grid">
+            <div class="feature-card">
+              <div class="feature-icon">📊</div>
+              <h3>Suivi des Scores</h3>
+              <p>
+                Gardez facilement le score de vos parties de billard avec une
+                interface claire et intuitive.
+              </p>
+            </div>
+            <div class="feature-card">
+              <div class="feature-icon">👥</div>
+              <h3>Gestion des Joueurs</h3>
+              <p>
+                Ajoutez et gérez plusieurs joueurs, suivez leurs statistiques et
+                historiques de parties.
+              </p>
+            </div>
+            <div class="feature-card">
+              <div class="feature-icon">📈</div>
+              <h3>Statistiques</h3>
+              <p>
+                Analysez vos performances avec des statistiques détaillées et un
+                historique complet des parties.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="screenshots" class="section">
+        <div class="container">
+          <h2 class="section-title">Captures d'écran</h2>
+          <div class="screenshots">
+            <div class="screenshot">Tableau de Score</div>
+            <div class="screenshot">Liste des Joueurs</div>
+            <div class="screenshot">Statistiques</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          <h2 class="section-title">À propos</h2>
+          <div style="max-width: 800px; margin: 0 auto; text-align: center">
+            <p style="font-size: 1.2rem; line-height: 1.8; color: #555">
+              KillerPool est l'application parfaite pour suivre vos parties de
+              billard. Fini le papier et le crayon ! Gérez facilement les
+              scores, les joueurs et gardez un historique de toutes vos parties.
+              Idéal pour les clubs, les tournois ou simplement entre amis.
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer id="contact">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-section">
+            <h3>Contact</h3>
+            <a href="mailto:aatmd@gmail.com">aatmd@gmail.com</a>
+          </div>
+          <div class="footer-section">
+            <h3>Légal</h3>
+            <a href="#" onclick="showPrivacyPolicy()"
+              >Politique de Confidentialité</a
+            >
+            <a href="#" onclick="showTerms()">Conditions d'Utilisation</a>
+          </div>
+          <div class="footer-section">
+            <h3>Support</h3>
+            <p>Application fournie "en l'état"</p>
+            <p>Aucun remboursement disponible</p>
+            <p>Support selon disponibilités</p>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>
+            &copy; 2025 AATMD. Tous droits réservés. Distribué sous licence MIT.
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // Smooth scrolling pour les liens de navigation
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute('href'));
+          if (target) {
+            target.scrollIntoView({
+              behavior: 'smooth',
+              block: 'start',
+            });
+          }
+        });
+      });
+
+      // Animation au scroll
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px',
+      };
+
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+          }
+        });
+      }, observerOptions);
+
+      document.querySelectorAll('.feature-card, .screenshot').forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(20px)';
+        el.style.transition = 'all 0.6s ease';
+        observer.observe(el);
+      });
+
+      function showPrivacyPolicy() {
+        alert(
+          "Politique de Confidentialité\n\nKillerPool ne collecte aucune donnée personnelle. L'application fonctionne entièrement en local sur votre appareil.\n\nContact: aatmd@gmail.com",
+        );
+      }
+
+      function showTerms() {
+        alert(
+          "Conditions d'Utilisation\n\nApplication fournie 'en l'état' sous licence MIT.\nAucun remboursement disponible.\nAucun support garanti.\n\nContact: aatmd@gmail.com",
+        );
+      }
+    </script>
+  </body>
+</html>
