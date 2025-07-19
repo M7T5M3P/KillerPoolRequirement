@@ -177,15 +177,16 @@
       .screenshot {
         width: 250px;
         height: 450px;
-        background: linear-gradient(145deg, #e6e6e6, #ffffff);
         border-radius: 25px;
         box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 1.1rem;
-        color: #666;
+        overflow: hidden;
         transition: transform 0.3s ease;
+      }
+
+      .screenshot img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
       }
 
       .screenshot:hover {
@@ -317,9 +318,15 @@
         <div class="container">
           <h2 class="section-title">Captures d'écran</h2>
           <div class="screenshots">
-            <div class="screenshot">Tableau de Score</div>
-            <div class="screenshot">Liste des Joueurs</div>
-            <div class="screenshot">Statistiques</div>
+            <div class="screenshot">
+              <img src="homescreen.png" alt="Écran d'accueil - Liste des joueurs" />
+            </div>
+            <div class="screenshot">
+              <img src="tableau.png" alt="Tableau de bord en jeu" />
+            </div>
+            <div class="screenshot">
+              <img src="recap.png" alt="Récapitulatif de fin de partie" />
+            </div>
           </div>
         </div>
       </section>
